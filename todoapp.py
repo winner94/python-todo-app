@@ -10,15 +10,38 @@ class Task:
         status = "✓" if self.done else "x"
         return f"[{status}] {self.title} {self.created_at}"
 
-def main():
-    task1 = Task("Duolingo")
-    task2 = Task("ToDoApp with class")
+class TaskManager:
+    def __init__(self):
+        self.tasks = []
+    
+    def add_task(self, title):
+        task = Task(title)
+        self.tasks.append(task)
 
-    print(task1.title)
-    print(task1.done)
-    print(task1.created_at)
-    print("----------------")
-    print(task1)
+    def complete_task(self, index):
+        self.tasks[index].done = True
+    
+    def remove_task(self,index):
+        self.tasks.pop(index)
+
+    def list_tasks(self):
+        for i, task in enumerate(self.tasks):
+            print(f"{i}. {task}")
+        
+
+def main():
+    manager = TaskManager()
+    manager.add_task("Duolingo")
+    manager.add_task("ToDoAPP Python with class")
+    manager.add_task("Zrobic kawe")
+
+    manager.list_tasks()
+    print("-----")
+    manager.complete_task(0)
+    manager.list_tasks()
+    print("-----")
+    manager.remove_task(1)
+    manager.list_tasks()
 
 if __name__ == "__main__":
     main()
