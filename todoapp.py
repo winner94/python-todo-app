@@ -51,14 +51,38 @@ class TaskManager:
 
 def main():
     manager = TaskManager()
-    manager.add_task("Duolingo")
-    manager.add_task("ToDoApp")
-    manager.complete_task(0)
-    manager.save()
-    
-    manager2 = TaskManager()
-    manager2.load()
-    manager2.list_tasks()
+    manager.load()
+    print("***** TODO APP *****")
+    while True:
+        print("--- MENU ---")
+        print("1. Add task")
+        print("2. Complete task")
+        print("3. Remove task")
+        print("4. List tasks")
+        print("5. Quit")
+
+        choice = int(input("Choose action [1-5]: "))
+        if choice == 5:
+            break
+
+        if choice == 1:
+            t_name = input("Task name: ")
+            manager.add_task(t_name)
+            manager.save()
+        
+        if choice == 2:
+            t_done = int(input("Task number to mark as done: "))
+            manager.complete_task(t_done)
+            manager.save()
+            
+        if choice == 3:
+            manager.list_tasks()
+            t_remove = int(input("Task to remove: "))
+            manager.remove_task(t_remove)
+            manager.save()
+
+        if choice == 4:
+            manager.list_tasks()
 
 if __name__ == "__main__":
     main()
