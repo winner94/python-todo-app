@@ -71,16 +71,26 @@ def main():
             manager.save()
         
         if choice == 2:
-            t_done = int(input("Task number to mark as done: "))
-            manager.complete_task(t_done)
-            manager.save()
+            try:
+                t_done = int(input("Task number to mark as done: "))
+                manager.complete_task(t_done)
+                manager.save()
+            except ValueError:
+                print("Enter a number.")
+            except IndexError:
+                print("Task not found.")
             
         if choice == 3:
             manager.list_tasks()
-            t_remove = int(input("Task to remove: "))
-            manager.remove_task(t_remove)
-            manager.save()
-
+            try:
+                t_remove = int(input("Task to remove: "))
+                manager.remove_task(t_remove)
+                manager.save()
+            except ValueError:
+                print("Enter a number.")
+            except IndexError:
+                print("Index not found")
+            
         if choice == 4:
             manager.list_tasks()
 
